@@ -1,12 +1,17 @@
 @font-face {
   font-family: "inter";
-  src: url(/join/fonts/Inter-VariableFont_slnt\,wght.ttf);
+  src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 body {
   margin: 0;
   background-color: rgb(246, 247, 248);
   font-family: "inter", sans-serif;
+}
+
+aside {
+  position: fixed;
+  z-index: 999;
 }
 
 .navbar {
@@ -16,7 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -32,7 +37,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .menu {
@@ -46,32 +51,16 @@ body {
 
 .menu p {
   color: rgba(205, 205, 205, 1);
+  margin: 0;
 }
 
-.summery {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 46px;
-  padding: 0px 56px;
+.menu a {
+  text-decoration: none;
 }
 
-.addTask {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 46px;
-  padding: 0px 56px;
-}
-
-.board {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 46px;
-  padding: 0px 56px;
-}
-
+.summery,
+.addTask,
+.board,
 .conntacts {
   display: flex;
   align-items: center;
@@ -80,24 +69,9 @@ body {
   padding: 0px 56px;
 }
 
-.summery:hover {
-  background-color: rgba(42, 61, 89, 1);
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.addTask:hover {
-  background-color: rgba(42, 61, 89, 1);
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.board:hover {
-  background-color: rgba(42, 61, 89, 1);
-  cursor: pointer;
-  font-weight: 500;
-}
-
+.summery:hover,
+.addTask:hover,
+.board:hover,
 .conntacts:hover {
   background-color: rgba(42, 61, 89, 1);
   cursor: pointer;
@@ -113,7 +87,7 @@ body {
 
 .policy a {
   color: rgba(168, 168, 168, 1);
-  padding: 8px 8px;
+  padding: 8px 60px;
   text-decoration: none;
   display: inline-block;
   width: 111px;
@@ -124,4 +98,129 @@ body {
   cursor: pointer;
   color: rgb(41, 171, 226);
   font-weight: bold;
+}
+
+.currentPage {
+  background-color: rgba(9, 25, 49, 1) !important;
+}
+
+.currentPagePolicy {
+  background-color: rgba(9, 25, 49, 1) !important;
+}
+
+.currentPagePolicy:hover {
+  color: rgba(168, 168, 168, 1) !important;
+  font-weight: 400 !important;
+}
+
+.boardResposive {
+  display: none;
+}
+
+@media (max-height: 821px) {
+  .joinIcon {
+    width: 90px;
+    position: absolute;
+    top: 24px;
+    padding: 0;
+  }
+  .menu {
+    margin-top: 220px;
+  }
+  .policy {
+    padding-bottom: 21px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .joinIcon {
+    display: none;
+  }
+  .policy {
+    display: none;
+  }
+  .navbar {
+    width: 100%;
+    height: 110px;
+    top: unset;
+    bottom: 0;
+    flex-direction: row;
+  }
+  .navbarContent {
+    display: block;
+    width: 100%;
+    height: 110px;
+  }
+  .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1px;
+    width: 100%;
+    gap: 0;
+  }
+  .board {
+    display: none;
+  }
+  .boardResposive {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 16px;
+    height: 46px;
+    padding: 26px 35px 37px 35px;
+    gap: 8px;
+  }
+  .summery,
+  .addTask,
+  .conntacts {
+    flex-direction: column;
+    gap: 8px;
+    height: 46px;
+    padding: 26px 30px 37px 26px;
+    border-radius: 16px;
+  }
+  .menu p {
+    margin: 0;
+  }
+  .menu img {
+    height: 40px;
+    width: 40px;
+  }
+  .summery:hover,
+  .addTask:hover,
+  .board:hover,
+  .conntacts:hover {
+    font-weight: 400;
+    background-color: rgba(42, 54, 71, 1);
+  }
+}
+@media (max-width: 794px) {
+  .navbarContent {
+    height: 80px;
+  }
+  .menu img {
+    height: 22px;
+    width: 22px;
+  }
+  .menu p {
+    font-size: 14px;
+  }
+  .navbar {
+    height: 80px;
+  }
+  .summery,
+  .addTask,
+  .conntacts {
+    padding: 14px 14px 18px 14px;
+  }
+  .boardResposive {
+    padding: 14px 25px 18px 25px;
+  }
+}
+@media (max-width: 380px) {
+  .menu p {
+    font-size: 11px;
+}
 }

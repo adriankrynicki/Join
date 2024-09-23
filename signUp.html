@@ -3,60 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="Join icon"
-      href="assets/img/joinWhite.png"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="/assets/img/joinWhite.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/signUp.css" />
     <title>Sign up</title>
   </head>
-  <body>
+  <body onload="initSignUp()">
     <img class="joinIcon" src="/assets/img/joinDark.png" alt="Join Icon" />
     <div class="justifySignUpContainer">
       <div class="signUpContainer">
+        <div class="vectorLeft">
+          <img
+            src="/assets/img/vectorLeft.png"
+            alt="Arrow back"
+            onclick="redirectToLogIn()"
+          />
+        </div>
         <div class="signUptTextContainer">
-          <div class="vectorLeft">
-            <img src="/assets/img/vectorLeft.png" alt="Arrow back" onclick="redirectToLogIn()">
-          </div>
           <h2 class="signUptText">Sign up</h2>
         </div>
-        <form class="" action="">
+        <form action="" onsubmit="return addUser(event)">
           <div class="signUpInput">
-            <input class="nameInput" type="text" placeholder="Name" />
-            <input class="emailInput" type="email" placeholder="Email" />
             <input
-              class="passwordInput"
-              type="password"
-              placeholder="Password"
+              onblur="toUpperCase(this)"
+              id="signUpNameInput"
+              class="nameInput"
+              type="text"
+              placeholder="Name"
+              required
             />
             <input
-              class="confirmPasswordInput"
-              type="password"
-              placeholder="Confirm Password"
+              id="signUpEmailInput"
+              class="emailInput"
+              type="email"
+              placeholder="Email"
+              required
             />
-            <div class="acceptCheckbox">
-              <img
-                class="checkbox"
-                src="/assets/img/emptyCheckbox.png"
-                alt="Checkbox"
+            <div class="passwordContainer">
+              <input
+                onblur="handlePasswordInputImg(this)"
+                onfocus="focusPasswordInput(this)"
+                id="signUpPasswordInput"
+                class="passwordInput passwordInputImg"
+                type="password"
+                placeholder="Password"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character."
+                required
               />
-              <p>I accept the <a class="privacyPolicy" href="">Privacy Policy</a></p>
+              <span
+                class="paswordVisibilityBTN"
+                onclick="handlePaswordVisibility()"
+              ></span>
             </div>
-            <button class="signUp">Sign up</button>
+            <div class="passwordContainer">
+              <input
+                onblur="handleConfirmPaswordInputImg(this)"
+                onfocus="focusConfirmPasswordInput(this)"
+                id="confirmPasswordInput"
+                class="confirmPasswordInput passwordInputImg"
+                type="password"
+                placeholder="Confirm Password"
+                required
+              />
+              <span
+                class="confirmPaswordVisibilityBTN"
+                onclick="handleConfirmPaswordVisibility()"
+              ></span>
+              <span class="passwordAlert dNone"
+                >Your passwords don't match. Please try again.</span
+              >
+            </div>
+            <div class="acceptCheckbox">
+              <div class="checkboxContainer">
+                <img
+                  id="checkbox"
+                  class="checkbox"
+                  src="/assets/img/emptyCheckbox.png"
+                  alt="Checkbox"
+                  onclick="toggleCheckbox(this)"
+                />
+                <img
+                  id="checkmark"
+                  src="/assets/img/okBlack.png"
+                  alt="check"
+                  style="display: none"
+                />
+              </div>
+              <p class="checkmarkText">
+                I accept the
+                <a
+                  class="privacyPolicy"
+                  href="/privacyPolicyNoLogin.html"
+                  target="_blank"
+                  >Privacy Policy</a
+                >
+              </p>
+            </div>
+            <button type="submit" class="signUp">Sign up</button>
           </div>
         </form>
       </div>
     </div>
+    <div id="signUpPopupContainer" class="signUpPopupContainer"></div>
+    <div id="signUpPopup" class="signUpPopup">
+      <p>You Signed Up successfully</p>
+    </div>
     <footer>
-      <a href="">Privacy Policy</a>
-      <a href="">Legal notice</a>
+      <a href="/privacyPolicyNoLogin.html" target="_blank">Privacy Policy</a>
+      <a href="/legalNoticeNoLogin.html" target="_blank">Legal notice</a>
     </footer>
-
-    <script>
-      function redirectToLogIn() {
-        window.location.href = "index.html";
-      }
-    </script>
+    <script src="/js/storage.js"></script>
+    <script src="/js/signUp.js"></script>
   </body>
 </html>

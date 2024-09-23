@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <link rel="stylesheet" href="/css/header.css" />
-
-    <header>
-      <p>Kanban Project Management Tool</p>
-      <div class="userIconContainer">
-        <img class="helpImg" src="/assets/img/help.png" alt="Help" />
-        <div class="userIcon">SM</div>
-      </div>
-    </header>
-
-</html>
+<div class="header">
+  <img class="joinIconResposive" src="/assets/img/joinDark.png" alt="Join Icon">
+  <p class="kanbanText">Kanban Project Management Tool</p>
+  <div class="userIconContainer">
+    <a class="helpLink" href="/help.html"><img class="helpImg" src="/assets/img/help.png" alt="Help" /></a>
+    <div id="userIcon" class="userIcon" onclick="toggleSubMenu()"></div>
+  </div>
+</div>
+<div id="subMenu" class="subMenu">
+  <a class="menuRowHelp" href="/help.html">Help</a>
+  <a class="menuRow" href="/privacyPolicy.html">Privacy Policy</a>
+  <a class="menuRow" href="/legalNotice.html">Legal Notice</a>
+  <a onclick="logout()" class="menuRow" href="/index.html">Log out</a>
+</div>

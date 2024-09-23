@@ -1,19 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/img/joinDark.png" type="image/x-icon" />
     <title>Contacts</title>
 </head>
+
 <body onload="contactInit()">
     <header w3-include-html="../template/header.html"></header>
     <aside w3-include-html="../template/nav.html"></aside>
-    
+<div id="content">
+    <div id="contactListContent">
+        <div id="contactListButtonContent"><button onclick="showAddContact()">Add new Contact <img
+                    src="./assets/img/person_add.png" alt=""></button></div>
+        <div id="contact-list" class="contact-list"></div>
+    </div>
+
+    <div id="contactContent" class="d-noneResp" >
+        <div id="contactHeadline">
+            <div id="contactsHeadlineResp"><h1>Contacts</h1> <img onclick="closeEditResponsive()" src="./assets/img/vectorLeft.png" alt=""></div>
+            <div id="headlineLine"></div>
+            <p>Better with a team</p>
+            <div id="headlineResp"></div>
+        </div>
+        <div id="viewContact">
+        </div>
+    </div>
+    <div id="blurBackground" onclick="cancelAddContact()" class="blurBackground d-none"></div>
+        <div id="addNewContact" onclick="event.stopPropagation()" >
+            <div id="addNewContactFirstSection">
+                <div id="closeAddContactDivResp"><img onclick="cancelAddContact()" id="addNewContactCloseButton"
+                    src="/assets/img/close_white.png" alt="close"></div>
+                <div id="addNewContactSlogan">
+                    <img src="/assets/img/joinWhite.png" alt="logo">
+                    <h1>Add contact</h1>
+                    <h3>Tasks are better with a team!</h3>
+                    <div class="blueLineAddContact"></div>
+                </div>
+            </div>
+            <div id="addNewContactSecondSection">
+                <div id="closeAddContactDiv"><img onclick="cancelAddContact()" id="addNewContactCloseButton"
+                        src="/assets/img/Close.png" alt="close"></div>
+                <div class="profileDivContact">
+                    <div class="profilPictureDivContent">
+                        <img class="addContactProfilePicture" src="/assets/img/profile_picture.png" alt="profilpicture">
+                    </div>
+                    <form onsubmit="return getNewContact(event)">
+                        <div id="contactInput">
+                            <div id="inputDiv">
+                                <div id="nameInput" class="inputBox inputBox1">
+                                    <input 
+                                    class="inputBlueBorder" 
+                                    id="fullName"
+                                    onblur="removeBlueBorderForNameInput()"
+                                    onfocus="addBlueBorderForNameInput()"
+                                    type="text" 
+                                    placeholder="Name"
+                                    required>
+                                    <img src="/assets/img/person.png">
+                                </div>
+                                <div id="emailInput" class="inputBox">
+                                    <input 
+                                    class="inputBlueBorder" 
+                                    id="emailAdress" 
+                                    onblur="removeBlueBorderForEmailInput()"
+                                    onfocus="addBlueBorderForEmailInput()"
+                                    type="email" 
+                                    placeholder="Email"
+                                    required>
+                                    <img src="/assets/img/mail.png">
+                                </div>
+                                <div id="phoneInput" class="inputBox">
+                                    <input 
+                                    class="inputBlueBorder" 
+                                    id="phoneNumber" 
+                                    onblur="removeBlueBorderForForPhoneInput()"
+                                    onfocus="addBlueBorderForForPhoneInput()"
+                                    type="text" 
+                                    placeholder="Phone" 
+                                    pattern="\d*"
+                                    title="Please enter a number with at least 11 digits"
+                                    required>
+                                    <img src="/assets/img/call.png">
+                                </div>
+                            </div>
+                            <div id="addNewContactAlert"></div>
+                            <div id="btnDiv">
+                                <button onclick="cancelAddContact()" id="cancelButtonContact">Cancel <img id="cancelIcon"
+                                        src="./assets/img/cancel(x).png" alt=""> </button>
+                                <button type="submit" id="createContactButton">Create contact <img
+                                        src="./assets/img/check.png" alt=""></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    <div id="blurBackgroundEdit" onclick="cancelEditContact()" class="blurBackgroundEdit d-none"></div>
+        <div id="editContact" onclick="event.stopPropagation()">
+            <div id="addNewContactFirstSection">
+                <div id="closeAddContactDivResp"><img onclick="cancelEditContact()" id="addNewContactCloseButton"
+                    src="/assets/img/close_white.png" alt="close"></div>
+                <div>
+                    <img id="editContactLogo" src="/assets/img/joinWhite.png" alt="logo">
+                    <h1>Edit contact</h1>
+                    <div class="blueLineAddContact"></div>
+                </div>
+            </div>
+            <div id="editContactSecondSection">
+                <div id="closeAddContactDiv"><img onclick="cancelEditContact()" id="addNewContactCloseButton"
+                        src="/assets/img/Close.png" alt="close"></div>
+                <div class="profileDivContact">
+                    <div id="profilepicture">
+                        <div id="whiteCircle">
+                            <div id="initialsEditContact">
+                                <h1 id="initialsText"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contactInput">
+                        <div id="inputDiv">
+                            <div id="inputBox" class="inputBox"><input class="inputBlueBorder" id="editName"
+                                    required type="text" placeholder="Name">
+                                <img src="/assets/img/person.png">
+                            </div>
+                            <div class="inputBox"><input id="editEmail" type="email" required
+                                    placeholder="Email">
+                                <img src="/assets/img/mail.png">
+                            </div>
+                            <div class="inputBox"><input id="editPhone" type="number"
+                                    pattern="[0-9]" placeholder="Phone"> <img src="/assets/img/call.png">
+                            </div>
+                        </div>
+                        <!-- <div id="addNewContactAlert"></div> -->
+                        <div id="btnDiv">
+                            <button onclick="cancelEditContact(); deleteContact()" id="cancelButtonContact">Delete<img id="cancelIcon"
+                                    src="./assets/img/cancel(x).png" alt=""></button>
+                            <button onclick="editContactToArray()"  id="editContactButton">Save<img
+                                    src="./assets/img/check.png" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="successfullyContainer">
+        <div id="successfully">Contact succesfully created</div>
+    </div>
+    <div id="addContactResp" onclick="showAddContact()"><img src="./assets/img/person_add.png" alt=""></div>
+</div>
+
     <script src="../js/template.js"></script>
     <script src="../js/contacts.js"></script>
-    
+    <script src="../js/storage.js"></script>
 </body>
+
 </html>
